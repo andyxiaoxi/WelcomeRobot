@@ -7,11 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 /**
  * Created by TangGongWen on 2017/5/31.
  */
 
-public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
+public abstract class BaseFragment<T extends BasePresenter> extends Fragment{
     protected T mPresenter;
 
     @Nullable
@@ -19,6 +22,8 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         mPresenter = createPresenter();
         View rootView = inflater.inflate(getLayoutId(), container, false);
+        //增加注解用法
+        ButterKnife.bind(this,rootView);
         initView(rootView);
         initData();
         return rootView;
@@ -38,5 +43,6 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
         if (null != mPresenter) {
             mPresenter.detachView();
         }
+
     }
 }

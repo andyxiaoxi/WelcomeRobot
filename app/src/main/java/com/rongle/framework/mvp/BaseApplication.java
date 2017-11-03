@@ -8,12 +8,6 @@ import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.robot.framework.utils.L;
-import com.robot.onekeyservice.R;
-import com.robot.onekeyservice.base.net.UrlManager;
-import com.robot.onekeyservice.video.sdkvideo.RLRtcEventHandler;
-
-import io.agora.rtc.RtcEngine;
 
 /**
  * Created by tony on 17-7-17.
@@ -27,10 +21,10 @@ public class BaseApplication extends Application {
 
     private static Context Gcontext;
 
-    private static RtcEngine rtcEngine;  //核心类
+  /*  private static RtcEngine rtcEngine;  //核心类
 
     private static RLRtcEventHandler mRlRtcEventHandler;                //rtc事件的回调
-
+*/
     public String appid = "";    //官网申请的id
 
 
@@ -40,18 +34,18 @@ public class BaseApplication extends Application {
         mainHandler = new Handler();
         Gcontext = getApplicationContext();
         initRemoteUrl();
-        L.init();
+       /* L.init();
         //设置appid
         appid = Gcontext.getString(R.string.app_id);
         mRlRtcEventHandler = new RLRtcEventHandler();
-        rtcEngine = RtcEngine.create(Gcontext, appid, mRlRtcEventHandler);
+        rtcEngine = RtcEngine.create(Gcontext, appid, mRlRtcEventHandler);*/
     }
 
     /**
      * 初始化BaseUrl
      * */
     private void initRemoteUrl() {
-        PackageManager pm = getPackageManager();
+       /* PackageManager pm = getPackageManager();
         try {
             PackageInfo pi = pm.getPackageInfo(getPackageName(), 0);
             final String versionName = pi.versionName;
@@ -67,7 +61,7 @@ public class BaseApplication extends Application {
             }
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
 
@@ -89,24 +83,24 @@ public class BaseApplication extends Application {
      *
      * @return
      */
-    public static RtcEngine getRtcEngine() {
+ /*   public static RtcEngine getRtcEngine() {
         if (rtcEngine == null) {
             throw new RuntimeException("rtcEngine is null");
         }
         return rtcEngine;
-    }
+    }*/
 
     /**
      * 获取rtc回掉对象
      *
      * @return
      */
-    public static RLRtcEventHandler getRLRtcEventHandler() {
+   /* public static RLRtcEventHandler getRLRtcEventHandler() {
         if (mRlRtcEventHandler == null) {
             throw new RuntimeException("Gcontext is null..");
         }
         return mRlRtcEventHandler;
-    }
+    }*/
 
     /**
      * 获取handler

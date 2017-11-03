@@ -1,1 +1,1 @@
-include ':app', ':retrofit', ':rxjava_retrofit', ':lib'
+include ':app', ':retrofit', ':rxjava_retrofit', ':lib', ':measurepixel', ':rxjava', ':rxjava'

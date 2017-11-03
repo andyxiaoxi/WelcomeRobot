@@ -1,5 +1,8 @@
 package com.rongle.retrofit;
 
+import android.content.Context;
+import android.telephony.TelephonyManager;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,8 +18,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MyRetrofit {
 
 
-    public static void request() {
-
+    public static void request(Context context) {
+        TelephonyManager TelephonyMgr = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
+        String szImei = TelephonyMgr.getDeviceId();
         //1,创建客户端对象
         Retrofit retrofit = new Retrofit.Builder().baseUrl("https://zmapp.rl160.com:4443/usergw/").
                 addConverterFactory(GsonConverterFactory.create()).build();
@@ -25,12 +29,15 @@ public class MyRetrofit {
         //3,调用接口
         ApiManager apiService = retrofit.create(ApiManager.class);
 
+
         Map<String,String> parmes = new HashMap<>();
-        parmes.put("phone","1345");
-        parmes.put("password","1345");
-        parmes.put("devid","1345");
-        parmes.put("platform","1345");
-        parmes.put("rdelv","1345");
+
+        String md5 = MD5.getMD5("888888");
+        parmes.put("phone", "13762755758");
+        parmes.put("password", md5);
+        parmes.put("devid", szImei);
+
+
 
 
         Call<LoginResponse> call = apiService.getData(parmes);

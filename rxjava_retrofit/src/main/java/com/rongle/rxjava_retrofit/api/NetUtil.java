@@ -1,9 +1,12 @@
 package com.rongle.rxjava_retrofit.api;
 
+import android.content.Context;
 import android.os.Build;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.rongle.rxjava_retrofit.bean.LogInfo;
+import com.rongle.rxjava_retrofit.bean.MD5;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +24,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 public class NetUtil {
 
-    public static void login(){
+    public static void login(Context context){
+
+        TelephonyManager TelephonyMgr = (TelephonyManager) context.getSystemService(context.TELEPHONY_SERVICE);
+        String szImei = TelephonyMgr.getDeviceId();
         //1,创建retrofit对象
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://zmapp.rl160.com:4443/usergw/")
@@ -32,11 +38,11 @@ public class NetUtil {
         NetApi service = retrofit.create(NetApi.class);
 
         Map<String,String> parmes = new HashMap<>();
-        parmes.put("phone","1345");
-        parmes.put("password","1345");
-        parmes.put("devid","1345");
-        parmes.put("platform","1345");
-        parmes.put("rdelv","1345");
+
+        String md5 = MD5.getMD5("888888");
+        parmes.put("phone", "13762755758");
+        parmes.put("password", md5);
+        parmes.put("devid", szImei);
         //3,请求服务
         service.login(parmes)            //调用请求方法
                 .subscribeOn(Schedulers.newThread())   // 请求的调用在新线程
@@ -54,6 +60,7 @@ public class NetUtil {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
+                        e.printStackTrace();
                         Log.e("rxjava","请求失败");
                     }
 

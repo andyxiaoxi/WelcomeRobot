@@ -10,19 +10,13 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/lib" />
+            <option value="$PROJECT_DIR$/measurepixel" />
             <option value="$PROJECT_DIR$/retrofit" />
+            <option value="$PROJECT_DIR$/rxjava" />
             <option value="$PROJECT_DIR$/rxjava_retrofit" />
           </set>
         </option>
-        <option name="myModules">
-          <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/lib" />
-            <option value="$PROJECT_DIR$/retrofit" />
-            <option value="$PROJECT_DIR$/rxjava_retrofit" />
-          </set>
-        </option>
+        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>
